@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 
 function App() {
-  const { isLoading, isAuthenticated, error, user, loginWithRedirect, logout } =
+  const { isLoading, isAuthenticated, error, user,  logout, loginWithRedirect, getAccessTokenSilently, getAccessTokenWithPopup } =
     useAuth0();
 
   useEffect(() => {
@@ -29,7 +29,13 @@ function App() {
       </div>
     );
   } else {
-    return <button onClick={() => loginWithRedirect()}>Log in</button>;
+    return (
+      <>
+      <button onClick={() => loginWithRedirect()}>      Log in with Twitter    </button>;
+      <button onClick={() => getAccessTokenSilently()}>      Log in with Twitter getAccessTokenSilently    </button>;
+      <button onClick={() => getAccessTokenWithPopup()}>      Log in with Twitter  getAccessTokenSilently   </button>;
+      </>
+    )
   }
 }
 
