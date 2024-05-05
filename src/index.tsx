@@ -15,6 +15,7 @@ const auth0Domain = 'dev-fna8hakae0rm8r1m.us.auth0.com'; // This should be somet
 
 // Ensure REACT_APP_AUTH0_CLIENTID is defined in your .env file
 const clientId = process.env.REACT_APP_AUTH0_CLIENTID;
+console.log('clientId------------->', clientId);
 if (!clientId) throw new Error('REACT_APP_AUTH0_CLIENTID is not defined');
 
 root.render(
