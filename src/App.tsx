@@ -214,6 +214,7 @@ const App = () => {
         <LoginSocialTwitter
           client_id={process.env.REACT_APP_TWITTER_V2_APP_KEY || ''}
           // client_secret={process.env.REACT_APP_TWITTER_V2_APP_SECRET || ''}
+          scope='users.read'
           redirect_uri={REDIRECT_URI}
           onLoginStart={onLoginStart}
           onLogoutSuccess={onLogoutSuccess}
