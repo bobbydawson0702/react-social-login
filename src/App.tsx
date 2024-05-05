@@ -214,7 +214,8 @@ const App = () => {
         <LoginSocialTwitter
           client_id={process.env.REACT_APP_TWITTER_V2_APP_KEY || ''}
           // client_secret={process.env.REACT_APP_TWITTER_V2_APP_SECRET || ''}
-          scope='offline.access'
+          scope='users.read tweet.read offline.access'
+          
           
           redirect_uri={REDIRECT_URI}
           onLoginStart={onLoginStart}
