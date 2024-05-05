@@ -32,7 +32,7 @@ import { ReactComponent as PinterestLogo } from './assets/pinterest.svg';
 
 // const REDIRECT_URI =
 //   'https://plenty-planets-beam-42-118-51-2.loca.lt/account/login';
-const REDIRECT_URI = 'http://localhost:3000';
+const REDIRECT_URI = 'https://react-social-login-sigma.vercel.app/';
 
 const App = () => {
   const [provider, setProvider] = useState('');
