@@ -98,6 +98,7 @@ export const LoginSocialTwitter = ({
         const encodedCredentials = "Basic " + btoa(client_id + ":" + client_secret);
 
         const requestOAuthURL = `${PREVENT_CORS_URL}/${TWITTER_API_URL}/2/oauth2/token`;
+        console.log('PASS_CORS_KEY---------------->', PASS_CORS_KEY);
         const data = await fetch(requestOAuthURL, {
           method: 'POST',
           body: details,
@@ -109,6 +110,8 @@ export const LoginSocialTwitter = ({
         })
           .then(data => data.json())
           .catch(err => onReject(err));
+
+        console.log('data--------------->',data);
 
         if (data.access_token) {
           if (isOnlyGetToken) onResolve({ provider: 'twitter', data });
