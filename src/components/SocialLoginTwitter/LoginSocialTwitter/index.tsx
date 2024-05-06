@@ -46,7 +46,7 @@ export const LoginSocialTwitter = ({
   children,
   fields = 'created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld',
   state = 'state',
-  scope = 'users.read%20tweet.read',
+  scope = 'users.read%20tweet.read%20offline.access',
   isOnlyGetCode = false,
   isOnlyGetToken = false,
   onLoginStart,
