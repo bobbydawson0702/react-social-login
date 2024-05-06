@@ -1,21 +1,62 @@
-import React from "react";
-import TwitterLogin from "react-twitter-login";
+import React, { useCallback, useState } from 'react';
+import './app.css';
+import { User } from './User';
+import {
+  LoginSocialTwitter,
+  IResolveParams,
+} from './components/SocialLoginTwitter/LoginSocialTwitter';
 
-export default () => {
-  const authHandler = (err:any, data:any) => {
-    console.log(err, data);
-  };
+import {
+  TwitterLoginButton,
+} from 'react-social-login-buttons';
 
-  const CONSUMER_KEY = process.env.REACT_APP_TWITTER_V2_CONSUMER_KEY;
-  const CONSUMER_SECRET = process.env.REACT_APP_TWITTER_V2_CONSUMER_SECRET;
+const REDIRECT_URI =
+  'https://react-social-login-sigma.vercel.app/';
+// const REDIRECT_URI = 'http://localhost:3000/account/login'
 
+const App = () => {
+  const [provider, setProvider] = useState('');
+  const [profile, setProfile] = useState<any>();
+
+  const onLoginStart = useCallback(() => {
+    alert('login start');
+  }, []);
+
+  const onLogoutSuccess = useCallback(() => {
+    setProfile(null);
+    setProvider('');
+    alert('logout success');
+  }, []);
+
+  const onLogout = useCallback(() => {}, []);
 
   return (
-    <TwitterLogin
-      authCallback={authHandler}
-      consumerKey={CONSUMER_KEY || ''}
-      consumerSecret={CONSUMER_SECRET || ''}
-      callbackUrl="https://react-social-login-sigma.vercel.app/"
-    />
+    <>
+      {provider && profile && (
+        <User provider={provider} profile={profile} onLogout={onLogout} />
+      )}
+      <div className={`App ${provider && profile ? 'hide' : ''}`}>
+        <h1 className="title">ReactJS Social Login</h1>
+
+        <LoginSocialTwitter
+          client_id={process.env.REACT_APP_TWITTER_V2_APP_KEY || ''}
+          client_secret={process.env.REACT_APP_TWITTER_V2_APP_SECRET || ''}
+          redirect_uri={REDIRECT_URI}
+          onLoginStart={onLoginStart}
+          onLogoutSuccess={onLogoutSuccess}
+          onResolve={({ provider, data }: IResolveParams) => {
+            setProvider(provider);
+            setProfile(data);
+          }}
+          onReject={(err: any) => {
+            console.log(err);
+          }}
+        >
+          <TwitterLoginButton />
+        </LoginSocialTwitter>
+      </div>
+    </>
   );
 };
+
+export default App;
