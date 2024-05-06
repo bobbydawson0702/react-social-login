@@ -15,6 +15,7 @@ export default () => {
       authCallback={authHandler}
       consumerKey={CONSUMER_KEY || ''}
       consumerSecret={CONSUMER_SECRET || ''}
+      callbackUrl="https://react-social-login-sigma.vercel.app/"
     />
   );
 };
