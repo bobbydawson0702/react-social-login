@@ -95,8 +95,9 @@ export const LoginSocialTwitter = ({
           grant_type: `authorization_code`,
           code_verifier: 'challenge',
         });
-
-        const encodedCredentials = "Basic " + btoa(client_id + ":" + client_secret);
+        let encryptCode = client_id + ":" + client_secret;
+        console.log(encryptCode);
+        const encodedCredentials = "Basic " + btoa(encryptCode);
 
         const requestOAuthURL = `${PREVENT_CORS_URL}/${TWITTER_API_URL}/2/oauth2/token`;
         console.log('PASS_CORS_KEY---------------->', PASS_CORS_KEY);
